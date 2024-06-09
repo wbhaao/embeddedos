@@ -1,20 +1,20 @@
-ENTRY(vector_start)
-SECTIONS
+ENTRY(vector_start)  /* 'vector_start' 심볼을 프로그램의 진입점(entry point)으로 설정합니다. */
+
+SECTIONS /* SECTIONS 지시어는 메모리 섹션들의 배치를 정의하는 시작점입니다. */
 {
-	. = 0x0;
+	. = 0x0; /* 현재 위치 카운터(.)를 0으로 설정합니다. 이는 메모리의 시작 주소를 의미합니다. */
 
-
-	.text :
+	.text : /* '.text' 섹션을 정의합니다. 이 섹션은 코드(실행 가능한 명령어들)를 포함합니다. */
 	{
-		*(vector_start)
-		*(.text .rodata)
+		*(vector_start) /* 'vector_start' 심볼(또는 섹션)을 여기에 배치합니다. */
+		*(.text .rodata) /* '.text'와 '.rodata'(읽기 전용 데이터) 섹션을 현재 위치에 결합합니다. */
 	}
-	.data :
+	.data : /* '.data' 섹션을 정의합니다. 이 섹션은 초기화된 데이터를 포함합니다. */
 	{
-		*(.data)
+		*(.data) /* 모든 '.data' 섹션을 현재 위치에 배치합니다. */
 	}
-	.bss :
+	.bss : /* '.bss' 섹션을 정의합니다. 이 섹션은 초기화되지 않은 데이터를 포함하며, 실행 시 0으로 초기화됩니다. */
 	{
-		*(.bss)
+		*(.bss) /* 모든 '.bss' 섹션을 현재 위치에 배치합니다. */
 	}
 } 
