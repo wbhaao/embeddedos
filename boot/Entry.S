@@ -13,7 +13,7 @@
         LDR PC, svc_handler_addr
         LDR PC, pftch_abt_handler_addr
         LDR PC, data_abt_handler_addr
-        B .
+        B   .
         LDR PC, irq_handler_addr
         LDR PC, fiq_handler_addr
 
@@ -27,41 +27,41 @@
     vector_end:
 
     reset_handler:
-        MRS R0, CPSR
-        BIC R1, R0, #0x1F
-        ORR R1, R1, #ARM_MODE_BIT_SVC
-        MSR CPSR, R1
-        LDR SP, =SVC_STACK_TOP
-        
-        MRS R0, CPSR
-        BIC R1, R0, #0x1F
-        ORR R1, R1, #ARM_MODE_BIT_IRQ
-        MSR CPSR, R1
-        LDR SP, =IRQ_STACK_TOP
+        MRS r0, cpsr
+        BIC r1, r0, #0x1F
+        ORR r1, r1, #ARM_MODE_BIT_SVC
+        MSR cpsr, r1
+        LDR sp, =SVC_STACK_TOP
 
-        MRS R0, CPSR
-        BIC R1, R0, #0x1F
-        ORR R1, R1, #ARM_MODE_BIT_FIQ
-        MSR CPSR, R1
-        LDR SP, =FIQ_STACK_TOP
+        MRS r0, cpsr
+        BIC r1, r0, #0x1F
+        ORR r1, r1, #ARM_MODE_BIT_IRQ
+        MSR cpsr, r1
+        LDR sp, =IRQ_STACK_TOP
 
-        MRS R0, CPSR
-        BIC R1, R0, #0x1F
-        ORR R1, R1, #ARM_MODE_BIT_ABT
-        MSR CPSR, R1
-        LDR SP, =ABT_STACK_TOP
+        MRS r0, cpsr
+        BIC r1, r0, #0x1F
+        ORR r1, r1, #ARM_MODE_BIT_FIQ
+        MSR cpsr, r1
+        LDR sp, =FIQ_STACK_TOP
 
-        MRS R0, CPSR
-        BIC R1, R0, #0x1F
-        ORR R1, R1, #ARM_MODE_BIT_UND
-        MSR CPSR, R1
-        LDR SP, =UND_STACK_TOP
+        MRS r0, cpsr
+        BIC r1, r0, #0x1F
+        ORR r1, r1, #ARM_MODE_BIT_ABT
+        MSR cpsr, r1
+        LDR sp, =ABT_STACK_TOP
 
-        MRS R0, CPSR
-        BIC R1, R0, #0x1F
-        ORR R1, R1, #ARM_MODE_BIT_SYS
-        MSR CPSR, R1
-        LDR SP, =USRSYS_STACK_TOP
+        MRS r0, cpsr
+        BIC r1, r0, #0x1F
+        ORR r1, r1, #ARM_MODE_BIT_UND
+        MSR cpsr, r1
+        LDR sp, =UND_STACK_TOP
+
+        MRS r0, cpsr
+        BIC r1, r0, #0x1F
+        ORR r1, r1, #ARM_MODE_BIT_SYS
+        MSR cpsr, r1
+        LDR sp, =USRSYS_STACK_TOP
 
     dummy_handler:
         B .
